@@ -14,22 +14,35 @@ const Footer = () => {
     alamat: 'Ruko Sentra Kranji, Jl. Bintara No.12f, RT.001/RW.012, Kranji, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17135, Indonesia'
   });
 
+  const [services, setServices] = useState([]);
+
   useEffect(() => {
-    const fetchContactContent = async () => {
+    const fetchData = async () => {
       try {
-        const records = await pb.collection('content').getFullList({
-          filter: `page="contact" && field="data"`,
-          $autoCancel: false
-        });
-        if (records.length > 0) {
-          const data = JSON.parse(records[0].value);
+        const [contactRecords, serviceRecords] = await Promise.all([
+          pb.collection('content').getFullList({
+            filter: `page="contact" && field="data"`,
+            $autoCancel: false
+          }),
+          pb.collection('services').getFullList({
+            sort: 'created',
+            $autoCancel: false
+          })
+        ]);
+
+        if (contactRecords.length > 0) {
+          const data = JSON.parse(contactRecords[0].value);
           setContactData(prev => ({ ...prev, ...data }));
         }
+        
+        if (serviceRecords.length > 0) {
+          setServices(serviceRecords);
+        }
       } catch (error) {
-        console.error("Error fetching contact for footer:", error);
+        console.error("Error fetching data for footer:", error);
       }
     };
-    fetchContactContent();
+    fetchData();
   }, []);
 
   const quickLinks = [
@@ -48,9 +61,9 @@ const Footer = () => {
         style={{ backgroundImage: 'url("https://horizons-cdn.hostinger.com/0fbf01b6-28c7-4623-ba2e-62114b48b0f6/b439283246ab46f18acfac7d6df67b60.png")' }}
       ></div>
       <div className="relative z-10 max-w-7xl mx-auto container-padding section-spacing">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
-          <div>
+          <div className="lg:col-span-1">
             <img 
               src="https://horizons-cdn.hostinger.com/0fbf01b6-28c7-4623-ba2e-62114b48b0f6/b439283246ab46f18acfac7d6df67b60.png" 
               alt="Saeklindo" 
@@ -72,6 +85,23 @@ const Footer = () => {
                     className="text-sm hover:text-primary transition-all duration-200"
                   >
                     {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Our Services */}
+          <div>
+            <span className="font-semibold text-base mb-4 block">{t('nav.services')}</span>
+            <ul className="space-y-3">
+              {services.map((service) => (
+                <li key={service.id}>
+                  <Link 
+                    to="/services" 
+                    className="text-sm hover:text-primary transition-all duration-200 text-secondary-foreground/80"
+                  >
+                    {service.nama}
                   </Link>
                 </li>
               ))}
