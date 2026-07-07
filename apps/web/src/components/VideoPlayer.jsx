@@ -22,6 +22,8 @@ const VideoPlayer = ({ videoUrl, fallbackImage }) => {
           muted
           loop
           playsInline
+          preload="auto"
+          poster={fallbackImage}
           className="w-full h-full object-cover"
         >
           <source src={videoUrl} type="video/mp4" />
