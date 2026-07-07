@@ -26,7 +26,7 @@ const ClientCard = ({ client, index = 0 }) => {
           </span>
         )}
       </div>
-      <div className="flex-grow flex flex-col">
+      <div className="flex-grow flex flex-col text-center items-center">
         <h3 className="text-xl font-bold mb-3 tracking-tight">{client.name}</h3>
         <p className="text-muted-foreground leading-relaxed text-sm line-clamp-3">
           {client.description}
