@@ -6,7 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile.web
     ports:
-      - "80:80"
+      # Hanya diekspos ke localhost (VPS internal) di port 3080 agar tidak bentrok
+      - "127.0.0.1:3080:80"
     depends_on:
       - pocketbase
     restart: unless-stopped
