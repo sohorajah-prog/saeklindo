@@ -67,8 +67,9 @@ const Footer = () => {
             <img 
               src="https://horizons-cdn.hostinger.com/0fbf01b6-28c7-4623-ba2e-62114b48b0f6/b439283246ab46f18acfac7d6df67b60.png" 
               alt="Saeklindo" 
-              className="h-12 w-auto mb-4"
+              className="h-12 w-auto mb-3"
             />
+            <h3 className="font-bold text-lg mb-2 text-secondary-foreground">PT. Saeklindo Karya Nusantara</h3>
             <p className="text-sm leading-relaxed text-secondary-foreground/80">
               {t('footer.brandDesc')}
             </p>
