@@ -15,6 +15,7 @@ const ClientsForm = () => {
   const [clients, setClients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [editId, setEditId] = useState(null);
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   const fetchClients = async () => {
@@ -53,9 +54,15 @@ const ClientsForm = () => {
         formData.append('logo', file);
       }
 
-      await pb.collection('clients').create(formData, { $autoCancel: false });
-      toast.success(t('messages.clientAdded'));
+      if (editId) {
+        await pb.collection('clients').update(editId, formData, { $autoCancel: false });
+        toast.success('Client updated successfully');
+      } else {
+        await pb.collection('clients').create(formData, { $autoCancel: false });
+        toast.success(t('messages.clientAdded'));
+      }
       reset();
+      setEditId(null);
       fetchClients();
     } catch (error) {
       console.error(error);
@@ -63,6 +70,20 @@ const ClientsForm = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleEdit = (client) => {
+    setEditId(client.id);
+    reset({
+      name: client.name,
+      description: client.description,
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const cancelEdit = () => {
+    setEditId(null);
+    reset({ name: '', description: '' });
   };
 
   const handleDelete = async (id) => {
@@ -82,7 +103,7 @@ const ClientsForm = () => {
       <div className="bg-card text-card-foreground border rounded-xl p-6 shadow-sm">
         <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
           <Building2 className="w-5 h-5 text-primary" />
-          {t('clients.addTitle')}
+          {editId ? 'Edit Client' : t('clients.addTitle')}
         </h2>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -122,19 +143,31 @@ const ClientsForm = () => {
             </div>
           </div>
 
-          <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
-            {isSubmitting ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {t('buttons.uploading')}
-              </>
-            ) : (
-              <>
-                <UploadCloud className="mr-2 h-4 w-4" />
-                {t('buttons.addClient')}
-              </>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  {t('buttons.uploading')}
+                </>
+              ) : editId ? (
+                <>
+                  <Edit className="mr-2 h-4 w-4" />
+                  Update Client
+                </>
+              ) : (
+                <>
+                  <UploadCloud className="mr-2 h-4 w-4" />
+                  {t('buttons.addClient')}
+                </>
+              )}
+            </Button>
+            {editId && (
+              <Button type="button" variant="outline" onClick={cancelEdit} className="w-full sm:w-auto">
+                Cancel
+              </Button>
             )}
-          </Button>
+          </div>
         </form>
       </div>
 
@@ -170,6 +203,14 @@ const ClientsForm = () => {
                   <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{client.description}</p>
                 </div>
                 <div className="flex flex-col gap-2 flex-shrink-0">
+                  <Button 
+                    variant="outline" 
+                    size="icon" 
+                    onClick={() => handleEdit(client)}
+                    title="Edit"
+                  >
+                    <Edit className="h-4 w-4" />
+                  </Button>
                   <Button 
                     variant="destructive" 
                     size="icon" 
