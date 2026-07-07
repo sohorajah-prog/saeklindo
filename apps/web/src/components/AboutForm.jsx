@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, useRef } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
@@ -9,6 +9,8 @@ import { toast } from 'sonner';
 import pb from '@/lib/pocketbaseClient';
 import { useTranslation } from '@/hooks/useTranslation.js';
 import { Upload, X, Loader2 } from 'lucide-react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const AboutForm = () => {
   const { t } = useTranslation();
@@ -31,7 +33,7 @@ const AboutForm = () => {
     deskripsi_en: z.string().min(1, t('messages.required')),
   });
 
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
+  const { register, handleSubmit, control, reset, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(aboutSchema),
     defaultValues: { visi: '', visi_en: '', misi: '', misi_en: '', deskripsi: '', deskripsi_en: '' }
   });
@@ -162,10 +164,18 @@ const AboutForm = () => {
     }
   };
 
+  const modules = {
+    toolbar: [
+      [{ 'list': 'bullet' }],
+      ['bold', 'italic', 'underline'],
+      ['clean']
+    ],
+  };
+
   if (isFetching) return <div className="p-8 text-center text-muted-foreground animate-pulse">{t('admin.loading')}</div>;
 
   return (
-    <div className="space-y-8 max-w-2xl">
+    <div className="space-y-8 max-w-3xl">
       <div className="bg-card p-6 rounded-xl shadow-sm border">
         <h3 className="text-lg font-semibold mb-4">Gambar Tentang Kami</h3>
         <div 
@@ -251,14 +261,22 @@ const AboutForm = () => {
           <div className="p-4 bg-muted/30 rounded-lg border">
             <h4 className="font-medium mb-3">{t('form.visi')}</h4>
             <div className="grid grid-cols-1 gap-4">
-              <div>
+              <div className="rich-editor-container">
                 <label className="block text-xs font-medium text-muted-foreground mb-1">Bahasa Indonesia</label>
-                <Textarea {...register('visi')} rows={2} />
+                <Controller
+                  name="visi"
+                  control={control}
+                  render={({ field }) => <ReactQuill theme="snow" modules={modules} {...field} />}
+                />
                 {errors.visi && <p className="text-sm text-destructive mt-1">{errors.visi.message}</p>}
               </div>
-              <div>
+              <div className="rich-editor-container">
                 <label className="block text-xs font-medium text-muted-foreground mb-1">English</label>
-                <Textarea {...register('visi_en')} rows={2} />
+                <Controller
+                  name="visi_en"
+                  control={control}
+                  render={({ field }) => <ReactQuill theme="snow" modules={modules} {...field} />}
+                />
                 {errors.visi_en && <p className="text-sm text-destructive mt-1">{errors.visi_en.message}</p>}
               </div>
             </div>
@@ -267,14 +285,22 @@ const AboutForm = () => {
           <div className="p-4 bg-muted/30 rounded-lg border">
             <h4 className="font-medium mb-3">{t('form.misi')}</h4>
             <div className="grid grid-cols-1 gap-4">
-              <div>
+              <div className="rich-editor-container">
                 <label className="block text-xs font-medium text-muted-foreground mb-1">Bahasa Indonesia</label>
-                <Textarea {...register('misi')} rows={3} />
+                <Controller
+                  name="misi"
+                  control={control}
+                  render={({ field }) => <ReactQuill theme="snow" modules={modules} {...field} />}
+                />
                 {errors.misi && <p className="text-sm text-destructive mt-1">{errors.misi.message}</p>}
               </div>
-              <div>
+              <div className="rich-editor-container">
                 <label className="block text-xs font-medium text-muted-foreground mb-1">English</label>
-                <Textarea {...register('misi_en')} rows={3} />
+                <Controller
+                  name="misi_en"
+                  control={control}
+                  render={({ field }) => <ReactQuill theme="snow" modules={modules} {...field} />}
+                />
                 {errors.misi_en && <p className="text-sm text-destructive mt-1">{errors.misi_en.message}</p>}
               </div>
             </div>

@@ -138,9 +138,10 @@ const AboutPage = () => {
                 {loading ? (
                   <Skeleton className="h-20 w-full" />
                 ) : (
-                  <p className="text-base leading-relaxed text-muted-foreground">
-                    {currentVisi}
-                  </p>
+                  <div 
+                    className="text-base leading-relaxed text-muted-foreground prose prose-sm prose-p:my-0 prose-ul:my-0 max-w-none dark:prose-invert"
+                    dangerouslySetInnerHTML={{ __html: currentVisi }}
+                  />
                 )}
               </motion.div>
 
@@ -160,9 +161,10 @@ const AboutPage = () => {
                 {loading ? (
                   <Skeleton className="h-20 w-full" />
                 ) : (
-                  <p className="text-base leading-relaxed text-muted-foreground">
-                    {currentMisi}
-                  </p>
+                  <div 
+                    className="text-base leading-relaxed text-muted-foreground prose prose-sm prose-p:my-0 prose-ul:my-0 max-w-none dark:prose-invert"
+                    dangerouslySetInnerHTML={{ __html: currentMisi }}
+                  />
                 )}
               </motion.div>
             </div>
