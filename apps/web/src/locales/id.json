@@ -1,0 +1,173 @@
+
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang Kami",
+    "services": "Layanan",
+    "gallery": "Galeri",
+    "clients": "Klien",
+    "contact": "Kontak",
+    "adminLogin": "Login Admin",
+    "dashboard": "Dasbor",
+    "logout": "Keluar"
+  },
+  "hero": {
+    "tagline": "Care For Yours",
+    "description": "Solusi layanan profesional untuk rumah dan bisnis Anda. Kami menyediakan layanan kebersihan, keamanan, sopir, dan staf rumah tangga yang terpercaya di Bekasi dan sekitarnya.",
+    "contactBtn": "Hubungi Kami di WhatsApp",
+    "servicesBtn": "Lihat Layanan Kami"
+  },
+  "services": {
+    "title": "Layanan Kami",
+    "description": "Solusi komprehensif yang dirancang untuk memenuhi kebutuhan spesifik Anda. Setiap layanan diberikan dengan keunggulan, keandalan, dan kepedulian.",
+    "learnMore": "Pelajari lebih lanjut",
+    "viewAll": "Lihat Semua Layanan",
+    "items": {
+      "cleaning": "Layanan Kebersihan",
+      "security": "Keamanan",
+      "driver": "Sopir",
+      "pramubakti": "Pramubakti"
+    }
+  },
+  "about": {
+    "title": "Tentang Saeklindo",
+    "description": "Mitra terpercaya Anda untuk solusi layanan profesional di Bekasi dan sekitarnya.",
+    "whoWeAre": "Siapa kami",
+    "vision": "Visi Kami",
+    "mission": "Misi Kami",
+    "values": "Nilai-Nilai Kami"
+  },
+  "gallery": {
+    "title": "Galeri Kami",
+    "description": "Lihat tim profesional kami beraksi. Kami bangga memberikan keunggulan di semua layanan kami.",
+    "noImages": "Tidak dapat memuat galeri",
+    "tryAgain": "Coba Lagi",
+    "uploadTitle": "Unggah Gambar Baru",
+    "manageTitle": "Kelola Galeri",
+    "dropzoneText": "Klik untuk mengunggah atau seret dan lepas",
+    "dropzoneHint": "JPEG, PNG, WebP (maks 5MB)",
+    "emptyState": "Belum ada gambar di galeri."
+  },
+  "clients": {
+    "title": "Klien Terpercaya Kami",
+    "description": "Kami bangga melayani berbagai portofolio bisnis dan individu, memberikan keunggulan dan keandalan dalam setiap kemitraan.",
+    "noClients": "Belum ada klien yang terdaftar",
+    "noClientsDesc": "Kami sedang memperbarui portofolio klien kami. Silakan periksa kembali nanti untuk melihat mitra luar biasa yang bekerja sama dengan kami!",
+    "addTitle": "Tambah Klien Baru",
+    "manageTitle": "Kelola Klien"
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "description": "Punya pertanyaan atau siap untuk memulai? Kami di sini untuk membantu. Hubungi kami dan kami akan merespons secepat mungkin.",
+    "sendMsg": "Kirim pesan kepada kami",
+    "info": "Informasi kontak",
+    "followUs": "Ikuti kami",
+    "businessHours": "Jam Kerja",
+    "hoursDetail": "Senin - Sabtu: 08:00 - 18:00"
+  },
+  "footer": {
+    "brandDesc": "Care For Yours - Solusi layanan profesional untuk kebutuhan rumah dan bisnis Anda.",
+    "quickLinks": "Tautan Cepat",
+    "contact": "Kontak",
+    "followUs": "Ikuti Kami",
+    "rights": "Hak cipta dilindungi undang-undang.",
+    "privacy": "Kebijakan Privasi",
+    "terms": "Syarat Ketentuan"
+  },
+  "login": {
+    "title": "Masuk ke Akun Anda",
+    "desc": "Silakan masuk untuk mengakses dasbor admin Saeklindo.",
+    "email": "Email",
+    "emailPlaceholder": "Masukan email",
+    "password": "Kata Sandi",
+    "signIn": "Masuk",
+    "signingIn": "Sedang masuk...",
+    "back": "Kembali ke Beranda"
+  },
+  "admin": {
+    "title": "Panel Admin",
+    "desc": "Kelola konten yang ditampilkan di situs web publik.",
+    "logout": "Keluar",
+    "viewSite": "Lihat Situs Langsung",
+    "tabs": {
+      "hero": "Bagian Utama",
+      "services": "Layanan",
+      "about": "Tentang Kami",
+      "gallery": "Galeri",
+      "clients": "Klien",
+      "contact": "Kontak"
+    },
+    "loading": "Memuat formulir..."
+  },
+  "form": {
+    "name": "Nama",
+    "email": "Email",
+    "phone": "Telepon",
+    "serviceType": "Jenis Layanan",
+    "message": "Pesan",
+    "title": "Judul",
+    "description": "Deskripsi",
+    "category": "Kategori",
+    "logo": "Logo Klien",
+    "image": "URL Gambar",
+    "tagline": "Slogan (Heading)",
+    "deskripsi": "Deskripsi (Subheading)",
+    "visi": "Visi",
+    "misi": "Misi",
+    "benefits": "Manfaat (Pisahkan dengan koma)",
+    "companyDesc": "Deskripsi Perusahaan",
+    "textContent": "Konten Teks",
+    "videoUpload": "Unggah Video",
+    "serviceName": "Nama Layanan"
+  },
+  "buttons": {
+    "add": "Tambah",
+    "edit": "Edit",
+    "delete": "Hapus",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "submit": "Kirim",
+    "upload": "Unggah",
+    "uploading": "Mengunggah...",
+    "saving": "Menyimpan...",
+    "sending": "Mengirim...",
+    "addService": "Tambah Layanan",
+    "saveServices": "Simpan Semua Layanan",
+    "saveAbout": "Simpan Bagian Tentang",
+    "saveHero": "Simpan Konten Teks",
+    "addClient": "Tambah Klien",
+    "uploadImage": "Unggah Gambar",
+    "sendMessage": "Kirim Pesan"
+  },
+  "messages": {
+    "success": "Operasi berhasil",
+    "error": "Terjadi kesalahan",
+    "confirmDelete": "Apakah Anda yakin ingin menghapus item ini?",
+    "invalidEmail": "Alamat email tidak valid",
+    "required": "Bidang ini wajib diisi",
+    "fileTooLarge": "Ukuran file harus kurang dari batas yang diizinkan",
+    "invalidFileType": "Jenis file tidak valid",
+    "messageSent": "Pesan berhasil dikirim",
+    "messageFailed": "Gagal mengirim pesan. Silakan coba lagi.",
+    "clientAdded": "Klien berhasil ditambahkan!",
+    "clientDeleted": "Klien berhasil dihapus",
+    "imageUploaded": "Gambar berhasil diunggah",
+    "imageDeleted": "Gambar dihapus",
+    "heroUpdated": "Teks utama berhasil diperbarui",
+    "aboutUpdated": "Bagian tentang berhasil diperbarui",
+    "servicesUpdated": "Layanan berhasil diperbarui"
+  },
+  "placeholders": {
+    "name": "Nama lengkap Anda",
+    "email": "email.anda@contoh.com",
+    "phone": "+62 812-3456-7890",
+    "message": "Ceritakan tentang kebutuhan Anda...",
+    "title": "mis. Pembersihan Kantor",
+    "description": "Deskripsi singkat...",
+    "clientName": "mis. Acme Corp",
+    "benefits": "Manfaat 1, Manfaat 2, Manfaat 3",
+    "tagline": "mis. Care For Yours",
+    "selectService": "Pilih layanan",
+    "selectCategory": "Pilih kategori"
+  }
+}

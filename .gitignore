@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+.env
+.DS_Store
+apps/pocketbase/pb_data/
+!apps/pocketbase/pb_data/.keep
+apps/web/dist/
+apps/pocketbase/pb_snapshots/
+app.tar.gz

@@ -1,0 +1,17 @@
+FROM alpine:latest
+
+# Install necessary utilities
+RUN apk add --no-cache ca-certificates
+
+WORKDIR /app
+
+# Copy the entire pocketbase directory
+COPY apps/pocketbase /app/
+
+# Make the pocketbase binary executable
+RUN chmod +x /app/pocketbase
+
+EXPOSE 8090
+
+# Run pocketbase
+CMD ["/app/pocketbase", "serve", "--http=0.0.0.0:8090", "--hooksWatch=false"]

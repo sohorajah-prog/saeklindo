@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - "80:80"
+    depends_on:
+      - pocketbase
+    restart: unless-stopped
+
+  pocketbase:
+    build:
+      context: .
+      dockerfile: Dockerfile.pocketbase
+    volumes:
+      - pb_data:/app/pb_data
+    restart: unless-stopped
+
+volumes:
+  pb_data:

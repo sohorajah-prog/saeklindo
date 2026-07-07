@@ -1,0 +1,173 @@
+
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "gallery": "Gallery",
+    "clients": "Clients",
+    "contact": "Contact",
+    "adminLogin": "Admin Login",
+    "dashboard": "Dashboard",
+    "logout": "Logout"
+  },
+  "hero": {
+    "tagline": "Care For Yours",
+    "description": "Professional service solutions for your home and business. We provide trusted cleaning, security, driver, and household staff services in Bekasi and surrounding areas.",
+    "contactBtn": "Contact Us on WhatsApp",
+    "servicesBtn": "View Our Services"
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "Comprehensive professional solutions designed to meet your specific needs. Each service is delivered with excellence, reliability, and care.",
+    "learnMore": "Learn more",
+    "viewAll": "View All Services",
+    "items": {
+      "cleaning": "Cleaning Service",
+      "security": "Security",
+      "driver": "Driver",
+      "pramubakti": "Household Staff"
+    }
+  },
+  "about": {
+    "title": "About Saeklindo",
+    "description": "Your trusted partner for professional service solutions in Bekasi and surrounding areas.",
+    "whoWeAre": "Who we are",
+    "vision": "Our Vision",
+    "mission": "Our Mission",
+    "values": "Our Values"
+  },
+  "gallery": {
+    "title": "Our Gallery",
+    "description": "Take a look at our professional team in action. We take pride in delivering excellence across all our services.",
+    "noImages": "Unable to load gallery",
+    "tryAgain": "Try Again",
+    "uploadTitle": "Upload New Image",
+    "manageTitle": "Manage Gallery",
+    "dropzoneText": "Click to upload or drag and drop",
+    "dropzoneHint": "JPEG, PNG, WebP (max 5MB)",
+    "emptyState": "No images in gallery yet."
+  },
+  "clients": {
+    "title": "Our Trusted Clients",
+    "description": "We are proud to serve a diverse portfolio of businesses and individuals, delivering excellence and reliability in every partnership.",
+    "noClients": "No clients listed yet",
+    "noClientsDesc": "We're currently updating our client portfolio. Check back later to see the amazing partners we work with!",
+    "addTitle": "Add New Client",
+    "manageTitle": "Manage Existing Clients"
+  },
+  "contact": {
+    "title": "Get in touch",
+    "description": "Have questions or ready to get started? We're here to help. Reach out to us and we'll respond as soon as possible.",
+    "sendMsg": "Send us a message",
+    "info": "Contact information",
+    "followUs": "Follow us",
+    "businessHours": "Business Hours",
+    "hoursDetail": "Monday - Saturday: 8:00 AM - 6:00 PM"
+  },
+  "footer": {
+    "brandDesc": "Care For Yours - Professional service solutions for your home and business needs.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "login": {
+    "title": "Sign In to Your Account",
+    "desc": "Please sign in to access the Saeklindo admin dashboard.",
+    "email": "Email",
+    "emailPlaceholder": "Enter email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signingIn": "Signing in...",
+    "back": "Back to Home"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "desc": "Manage content displayed on the public website.",
+    "logout": "Logout",
+    "viewSite": "View Live Site",
+    "tabs": {
+      "hero": "Hero Section",
+      "services": "Services",
+      "about": "About Us",
+      "gallery": "Gallery",
+      "clients": "Clients",
+      "contact": "Contact"
+    },
+    "loading": "Loading form..."
+  },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "serviceType": "Service Type",
+    "message": "Message",
+    "title": "Title",
+    "description": "Description",
+    "category": "Category",
+    "logo": "Client Logo",
+    "image": "Image URL",
+    "tagline": "Tagline (Heading)",
+    "deskripsi": "Description (Subheading)",
+    "visi": "Vision",
+    "misi": "Mission",
+    "benefits": "Benefits (Comma separated)",
+    "companyDesc": "Company Description",
+    "textContent": "Text Content",
+    "videoUpload": "Video Upload",
+    "serviceName": "Service Name"
+  },
+  "buttons": {
+    "add": "Add",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "upload": "Upload",
+    "uploading": "Uploading...",
+    "saving": "Saving...",
+    "sending": "Sending...",
+    "addService": "Add Service",
+    "saveServices": "Save All Services",
+    "saveAbout": "Save About Section",
+    "saveHero": "Save Text Content",
+    "addClient": "Add Client",
+    "uploadImage": "Upload Image",
+    "sendMessage": "Send Message"
+  },
+  "messages": {
+    "success": "Operation successful",
+    "error": "An error occurred",
+    "confirmDelete": "Are you sure you want to delete this item?",
+    "invalidEmail": "Invalid email address",
+    "required": "This field is required",
+    "fileTooLarge": "File size must be less than allowed limit",
+    "invalidFileType": "Invalid file type",
+    "messageSent": "Message sent successfully",
+    "messageFailed": "Failed to send message. Please try again.",
+    "clientAdded": "Client added successfully!",
+    "clientDeleted": "Client deleted successfully",
+    "imageUploaded": "Image uploaded successfully",
+    "imageDeleted": "Image deleted",
+    "heroUpdated": "Hero text updated successfully",
+    "aboutUpdated": "About section updated successfully",
+    "servicesUpdated": "Services updated successfully"
+  },
+  "placeholders": {
+    "name": "Your full name",
+    "email": "your.email@example.com",
+    "phone": "+62 812-3456-7890",
+    "message": "Tell us about your requirements...",
+    "title": "e.g., Office Cleaning",
+    "description": "Brief description...",
+    "clientName": "e.g. Acme Corp",
+    "benefits": "Benefit 1, Benefit 2, Benefit 3",
+    "tagline": "e.g. Care For Yours",
+    "selectService": "Select a service",
+    "selectCategory": "Select category"
+  }
+}
