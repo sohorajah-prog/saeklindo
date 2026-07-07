@@ -20,7 +20,7 @@ const SocialLinks = ({ className = "" }) => {
       name: 'Facebook',
       icon: Facebook,
       url: 'https://facebook.com/saeklindo.official',
-      label: 'saeklindo.official'
+      label: '@saeklindo.official'
     }
   ];
 
