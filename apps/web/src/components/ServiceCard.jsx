@@ -2,8 +2,11 @@ import React from 'react';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import { useTranslation } from '@/hooks/useTranslation.js';
 
 const ServiceCard = ({ service, index }) => {
+  const { t } = useTranslation();
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -30,7 +33,7 @@ const ServiceCard = ({ service, index }) => {
         
         {service.benefits && service.benefits.length > 0 && (
           <div className="mb-6">
-            <span className="text-sm font-semibold mb-3 block">Key Benefits:</span>
+            <span className="text-sm font-semibold mb-3 block">{t('services.keyBenefits')}</span>
             <ul className="space-y-2">
               {service.benefits.map((benefit, idx) => (
                 <li key={idx} className="flex items-start gap-2 text-sm">
@@ -52,7 +55,7 @@ const ServiceCard = ({ service, index }) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Get Started
+              {t('services.getStarted')}
             </a>
           </Button>
         </div>
