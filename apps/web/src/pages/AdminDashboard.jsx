@@ -47,33 +47,34 @@ const AdminDashboard = () => {
             <p className="text-xs text-muted-foreground mt-1 truncate">{currentUser?.email}</p>
           </div>
           
-          <nav className="p-4 flex-1 space-y-2 overflow-y-auto">
+          <nav className="p-4 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-y-auto whitespace-nowrap scrollbar-hide flex-1 md:space-y-2">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                  className={`flex-shrink-0 md:w-full flex items-center gap-2 md:gap-3 px-4 py-2 md:py-3 rounded-lg text-sm font-medium transition-all ${
                     activeTab === tab.id
                       ? 'bg-primary text-primary-foreground shadow-sm'
                       : 'text-foreground/80 hover:bg-muted hover:text-foreground'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
-                  {tab.label}
+                  <Icon className="w-4 h-4 shrink-0" />
+                  <span>{tab.label}</span>
                 </button>
               );
             })}
           </nav>
 
-          <div className="p-4 border-t">
-            <Button variant="ghost" className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10" onClick={handleLogout}>
-              <LogOut className="w-4 h-4 mr-3" />
-              {t('admin.logout')}
+          <div className="p-4 border-t flex flex-row md:flex-col gap-2">
+            <Button variant="ghost" className="flex-1 md:w-full justify-center md:justify-start text-destructive hover:text-destructive hover:bg-destructive/10" onClick={handleLogout}>
+              <LogOut className="w-4 h-4 md:mr-3 mr-1" />
+              <span className="hidden md:inline">{t('admin.logout')}</span>
             </Button>
-            <Button variant="link" className="w-full justify-start mt-2" onClick={() => navigate('/')}>
-              {t('admin.viewSite')}
+            <Button variant="link" className="flex-1 md:w-full justify-center md:justify-start" onClick={() => navigate('/')}>
+              <span className="hidden md:inline">{t('admin.viewSite')}</span>
+              <span className="md:hidden">Situs</span>
             </Button>
           </div>
         </aside>
