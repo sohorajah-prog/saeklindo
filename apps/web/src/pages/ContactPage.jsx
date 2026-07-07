@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { MapPin, Phone, Clock, Mail } from 'lucide-react';
+import { MapPin, Phone, Clock, Mail, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -45,7 +45,7 @@ const ContactPage = () => {
 
   const contactInfo = [
     {
-      icon: Phone,
+      icon: MessageCircle,
       title: 'WhatsApp',
       details: content.whatsapp,
       link: `https://wa.me/${cleanWhatsappLink}`

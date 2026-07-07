@@ -15,12 +15,6 @@ const SocialLinks = ({ className = "" }) => {
       icon: Music2,
       url: 'https://tiktok.com/@saeklindo.official',
       label: '@saeklindo.official'
-    },
-    {
-      name: 'WhatsApp',
-      icon: MessageCircle,
-      url: 'https://wa.me/6289670691999',
-      label: '+62 896-7069-1999'
     }
   ];
 

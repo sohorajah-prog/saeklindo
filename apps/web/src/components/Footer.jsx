@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 import SocialLinks from './SocialLinks';
 import { useTranslation } from '@/hooks/useTranslation.js';
 import pb from '@/lib/pocketbaseClient';
@@ -83,26 +83,29 @@ const Footer = () => {
             <span className="font-semibold text-base mb-4 block">{t('footer.contact')}</span>
             <ul className="space-y-3 text-secondary-foreground/80">
               <li className="flex items-start gap-2 text-sm">
-                <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <div className="flex flex-col gap-1">
-                  <a 
-                    href={`https://wa.me/${contactData.whatsapp?.replace(/\D/g, '')}`} 
-                    className="hover:text-primary transition-all duration-200 text-secondary-foreground block"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    WA: {contactData.whatsapp}
-                  </a>
-                  {contactData.phone && (
-                    <a 
-                      href={`tel:${contactData.phone.replace(/[^0-9+]/g, '')}`} 
-                      className="hover:text-primary transition-all duration-200 text-secondary-foreground block"
-                    >
-                      Telp: {contactData.phone}
-                    </a>
-                  )}
-                </div>
+                <MessageCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                <a 
+                  href={`https://wa.me/${contactData.whatsapp?.replace(/\D/g, '')}`} 
+                  className="hover:text-primary transition-all duration-200 text-secondary-foreground"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {contactData.whatsapp}
+                </a>
               </li>
+              
+              {contactData.phone && (
+                <li className="flex items-start gap-2 text-sm">
+                  <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <a 
+                    href={`tel:${contactData.phone.replace(/[^0-9+]/g, '')}`} 
+                    className="hover:text-primary transition-all duration-200 text-secondary-foreground"
+                  >
+                    {contactData.phone}
+                  </a>
+                </li>
+              )}
+
               <li className="flex items-start gap-2 text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span className="leading-relaxed">
