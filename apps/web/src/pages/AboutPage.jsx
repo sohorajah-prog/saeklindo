@@ -14,7 +14,8 @@ const AboutPage = () => {
   const [content, setContent] = useState({
     deskripsi: '',
     visi: '',
-    misi: ''
+    misi: '',
+    imageUrl: 'https://images.unsplash.com/photo-1510130987633-2a82b350a9c2'
   });
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +28,11 @@ const AboutPage = () => {
         });
         if (records.length > 0) {
           const data = JSON.parse(records[0].value);
-          setContent(prev => ({ ...prev, ...data }));
+          let imageUrl = content.imageUrl;
+          if (records[0].image_file) {
+            imageUrl = pb.files.getURL(records[0], records[0].image_file);
+          }
+          setContent(prev => ({ ...prev, ...data, imageUrl }));
         }
       } catch (error) {
         console.error("Error fetching about content", error);
@@ -76,9 +81,9 @@ const AboutPage = () => {
                 transition={{ duration: 0.6 }}
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1510130987633-2a82b350a9c2" 
+                  src={content.imageUrl} 
                   alt="Professional team meeting"
-                  className="rounded-2xl shadow-lg w-full h-auto"
+                  className="rounded-2xl shadow-lg w-full h-auto aspect-video object-cover"
                 />
               </motion.div>
 
