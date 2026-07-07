@@ -1,12 +1,36 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import SocialLinks from './SocialLinks';
 import { useTranslation } from '@/hooks/useTranslation.js';
+import pb from '@/lib/pocketbaseClient';
 
 const Footer = () => {
   const { t } = useTranslation();
+  const [contactData, setContactData] = useState({
+    whatsapp: '+62 896-7069-1999',
+    phone: '021-38317003',
+    alamat: 'Ruko Sentra Kranji, Jl. Bintara No.12f, RT.001/RW.012, Kranji, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17135, Indonesia'
+  });
+
+  useEffect(() => {
+    const fetchContactContent = async () => {
+      try {
+        const records = await pb.collection('content').getFullList({
+          filter: `page="contact" && field="data"`,
+          $autoCancel: false
+        });
+        if (records.length > 0) {
+          const data = JSON.parse(records[0].value);
+          setContactData(prev => ({ ...prev, ...data }));
+        }
+      } catch (error) {
+        console.error("Error fetching contact for footer:", error);
+      }
+    };
+    fetchContactContent();
+  }, []);
 
   const quickLinks = [
     { name: t('nav.home'), path: '/' },
@@ -60,19 +84,29 @@ const Footer = () => {
             <ul className="space-y-3 text-secondary-foreground/80">
               <li className="flex items-start gap-2 text-sm">
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <a 
-                  href="https://wa.me/6289670691999" 
-                  className="hover:text-primary transition-all duration-200 text-secondary-foreground"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  +62 896-7069-1999
-                </a>
+                <div className="flex flex-col gap-1">
+                  <a 
+                    href={`https://wa.me/${contactData.whatsapp?.replace(/\D/g, '')}`} 
+                    className="hover:text-primary transition-all duration-200 text-secondary-foreground block"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    WA: {contactData.whatsapp}
+                  </a>
+                  {contactData.phone && (
+                    <a 
+                      href={`tel:${contactData.phone.replace(/[^0-9+]/g, '')}`} 
+                      className="hover:text-primary transition-all duration-200 text-secondary-foreground block"
+                    >
+                      Telp: {contactData.phone}
+                    </a>
+                  )}
+                </div>
               </li>
               <li className="flex items-start gap-2 text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <span className="leading-relaxed">
-                  Ruko Sentra Kranji, Jl. Bintara No.12f, RT.001/RW.012, Kranji, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17135, Indonesia
+                  {contactData.alamat}
                 </span>
               </li>
             </ul>

@@ -11,6 +11,7 @@ import pb from '@/lib/pocketbaseClient';
 
 const contactSchema = z.object({
   whatsapp: z.string().min(1, 'WhatsApp number is required'),
+  phone: z.string().optional(),
   email: z.string().email('Valid email is required'),
   alamat: z.string().min(1, 'Address is required'),
 });
@@ -21,7 +22,7 @@ const AdminContactForm = () => {
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(contactSchema),
-    defaultValues: { whatsapp: '', email: '', alamat: '' }
+    defaultValues: { whatsapp: '', phone: '', email: '', alamat: '' }
   });
 
   useEffect(() => {
@@ -37,6 +38,7 @@ const AdminContactForm = () => {
         } else {
           reset({
             whatsapp: '+62 896-7069-1999',
+            phone: '021-38317003',
             email: 'hello@saeklindo.com',
             alamat: 'Ruko Sentra Kranji, Jl. Bintara No.12f, RT.001/RW.012, Kranji, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17135, Indonesia'
           });
@@ -75,10 +77,17 @@ const AdminContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-2xl bg-card p-6 rounded-xl shadow-sm border">
-      <div>
-        <label className="block text-sm font-medium mb-2">WhatsApp Number (include country code)</label>
-        <Input {...register('whatsapp')} placeholder="+62 896..." />
-        {errors.whatsapp && <p className="text-sm text-destructive mt-1">{errors.whatsapp.message}</p>}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium mb-2">WhatsApp Number</label>
+          <Input {...register('whatsapp')} placeholder="+62 896..." />
+          {errors.whatsapp && <p className="text-sm text-destructive mt-1">{errors.whatsapp.message}</p>}
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Phone / Landline</label>
+          <Input {...register('phone')} placeholder="021-..." />
+          {errors.phone && <p className="text-sm text-destructive mt-1">{errors.phone.message}</p>}
+        </div>
       </div>
 
       <div>

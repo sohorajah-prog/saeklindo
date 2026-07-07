@@ -15,6 +15,7 @@ const ContactPage = () => {
   const { t } = useTranslation();
   const [content, setContent] = useState({
     whatsapp: '+62 896-7069-1999',
+    phone: '021-38317003',
     email: 'contact@saeklindo.com',
     alamat: 'Ruko Sentra Kranji, Jl. Bintara No.12f, RT.001/RW.012, Kranji, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17135, Indonesia'
   });
@@ -45,10 +46,22 @@ const ContactPage = () => {
   const contactInfo = [
     {
       icon: Phone,
-      title: t('form.phone'),
+      title: 'WhatsApp',
       details: content.whatsapp,
       link: `https://wa.me/${cleanWhatsappLink}`
-    },
+    }
+  ];
+
+  if (content.phone) {
+    contactInfo.push({
+      icon: Phone,
+      title: 'Phone / Landline',
+      details: content.phone,
+      link: `tel:${content.phone.replace(/[^0-9+]/g, '')}`
+    });
+  }
+
+  contactInfo.push(
     {
       icon: Mail,
       title: t('form.email'),
@@ -65,7 +78,7 @@ const ContactPage = () => {
       title: t('contact.businessHours'),
       details: t('contact.hoursDetail')
     }
-  ];
+  );
 
   return (
     <>
