@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Upload, X, Trash2, Loader2, Sparkles, Shield, Car, Users, LayoutGrid } from 'lucide-react';
+import { Upload, X, Trash2, Edit2, Loader2, Sparkles, Shield, Car, Users, LayoutGrid } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -14,6 +14,7 @@ const ServicesForm = () => {
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
+  const [editId, setEditId] = useState(null);
   const fileInputRef = useRef(null);
 
   const [formData, setFormData] = useState({
@@ -86,6 +87,30 @@ const ServicesForm = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleEdit = (item) => {
+    setEditId(item.id);
+    setFormData({
+      nama: item.nama,
+      nama_en: item.nama_en || '',
+      deskripsi: item.deskripsi,
+      deskripsi_en: item.deskripsi_en || '',
+      benefits: item.benefits,
+      benefits_en: item.benefits_en || '',
+      file: null,
+      preview: item.image ? pb.files.getURL(item, item.image) : null
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const cancelEdit = () => {
+    setEditId(null);
+    setFormData({ 
+      nama: '', nama_en: '', deskripsi: '', deskripsi_en: '', 
+      benefits: '', benefits_en: '', file: null, preview: null 
+    });
+    if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.nama || !formData.deskripsi || !formData.benefits) {
@@ -106,14 +131,15 @@ const ServicesForm = () => {
         data.append('image', formData.file);
       }
 
-      await pb.collection('services').create(data, { $autoCancel: false });
+      if (editId) {
+        await pb.collection('services').update(editId, data, { $autoCancel: false });
+        toast.success(t('messages.servicesUpdated'));
+      } else {
+        await pb.collection('services').create(data, { $autoCancel: false });
+        toast.success(t('messages.servicesUpdated'));
+      }
       
-      toast.success(t('messages.servicesUpdated'));
-      setFormData({ 
-        nama: '', nama_en: '', deskripsi: '', deskripsi_en: '', 
-        benefits: '', benefits_en: '', file: null, preview: null 
-      });
-      if (fileInputRef.current) fileInputRef.current.value = '';
+      cancelEdit();
       fetchItems();
     } catch (error) {
       console.error('Upload error:', error);
@@ -130,6 +156,7 @@ const ServicesForm = () => {
       await pb.collection('services').delete(id, { $autoCancel: false });
       toast.success(t('messages.servicesUpdated'));
       setItems(items.filter(item => item.id !== id));
+      if (editId === id) cancelEdit();
     } catch (error) {
       console.error('Delete error:', error);
       toast.error(t('messages.error'));
@@ -147,7 +174,16 @@ const ServicesForm = () => {
   return (
     <div className="space-y-8">
       <div className="bg-card border rounded-xl p-6 shadow-sm">
-        <h2 className="text-xl font-semibold mb-6">{t('buttons.addService')}</h2>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-xl font-semibold">
+            {editId ? t('buttons.edit') + ' Layanan' : t('buttons.addService')}
+          </h2>
+          {editId && (
+            <Button variant="outline" size="sm" onClick={cancelEdit}>
+              {t('buttons.cancel')}
+            </Button>
+          )}
+        </div>
         
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -280,7 +316,7 @@ const ServicesForm = () => {
             ) : (
               <>
                 <Upload className="w-4 h-4 mr-2" />
-                {t('buttons.saveServices')}
+                {editId ? t('buttons.save') : t('buttons.saveServices')}
               </>
             )}
           </Button>
@@ -304,7 +340,7 @@ const ServicesForm = () => {
             {items.map((item) => {
               const Icon = getIconForService(item.nama);
               return (
-                <div key={item.id} className="relative rounded-lg overflow-hidden border bg-background flex flex-row items-center p-4 gap-4">
+                <div key={item.id} className={`relative rounded-lg overflow-hidden border flex flex-row items-center p-4 gap-4 transition-colors ${editId === item.id ? 'bg-primary/5 border-primary/50' : 'bg-background'}`}>
                   <div className="w-20 h-20 shrink-0 rounded-md overflow-hidden bg-muted flex items-center justify-center">
                     {item.image ? (
                       <img 
@@ -323,13 +359,22 @@ const ServicesForm = () => {
                     <p className="text-xs text-primary font-medium mt-1 line-clamp-1">{item.benefits}</p>
                   </div>
                   
-                  <button
-                    onClick={() => handleDelete(item.id)}
-                    className="p-2 bg-destructive/10 text-destructive rounded-md hover:bg-destructive hover:text-destructive-foreground transition-colors shrink-0"
-                    title={t('buttons.delete')}
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                  <div className="flex flex-col gap-2 shrink-0">
+                    <button
+                      onClick={() => handleEdit(item)}
+                      className="p-2 bg-primary/10 text-primary rounded-md hover:bg-primary hover:text-primary-foreground transition-colors"
+                      title={t('buttons.edit')}
+                    >
+                      <Edit2 className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="p-2 bg-destructive/10 text-destructive rounded-md hover:bg-destructive hover:text-destructive-foreground transition-colors"
+                      title={t('buttons.delete')}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               );
             })}
