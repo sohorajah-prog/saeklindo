@@ -17,17 +17,16 @@ const ServicesPage = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const records = await pb.collection('content').getFullList({
-          filter: `page="services" && field="data"`,
+        const records = await pb.collection('services').getFullList({
+          sort: 'created',
           $autoCancel: false
         });
         if (records.length > 0) {
-          const parsed = JSON.parse(records[0].value);
-          const formatted = parsed.map(s => ({
+          const formatted = records.map(s => ({
             title: s.nama,
             description: s.deskripsi,
-            image: s.image || 'https://images.unsplash.com/photo-1699109076552-58db1cccae82',
-            benefits: Array.isArray(s.benefits) ? s.benefits : s.benefits?.split(',') || []
+            image: s.image ? pb.files.getURL(s, s.image) : 'https://images.unsplash.com/photo-1699109076552-58db1cccae82',
+            benefits: s.benefits.split(',').map(b => b.trim()).filter(Boolean)
           }));
           setServices(formatted);
         } else {

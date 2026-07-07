@@ -25,24 +25,28 @@ const HomePage = () => {
   useEffect(() => {
     const fetchHomeContent = async () => {
       try {
-        const records = await pb.collection('content').getFullList({
-          filter: `(page="hero" || page="services") && field="data"`,
-          $autoCancel: false
-        });
+        const [heroRecords, serviceRecords] = await Promise.all([
+          pb.collection('content').getFullList({
+            filter: `page="hero" && field="data"`,
+            $autoCancel: false
+          }),
+          pb.collection('services').getFullList({
+            sort: 'created',
+            $autoCancel: false
+          })
+        ]);
         
         let newContent = { ...content };
-        records.forEach(record => {
-          const data = JSON.parse(record.value);
-          if (record.page === 'hero') {
-            newContent.tagline = data.tagline;
-            newContent.deskripsi = data.deskripsi;
-            if (record.video_file) {
-              newContent.videoUrl = pb.files.getURL(record, record.video_file);
-            }
-          } else if (record.page === 'services') {
-            newContent.services = data;
+        if (heroRecords.length > 0) {
+          const data = JSON.parse(heroRecords[0].value);
+          newContent.tagline = data.tagline;
+          newContent.deskripsi = data.deskripsi;
+          if (heroRecords[0].video_file) {
+            newContent.videoUrl = pb.files.getURL(heroRecords[0], heroRecords[0].video_file);
           }
-        });
+        }
+        
+        newContent.services = serviceRecords;
         setContent(newContent);
       } catch (error) {
         console.error("Error fetching homepage content", error);
