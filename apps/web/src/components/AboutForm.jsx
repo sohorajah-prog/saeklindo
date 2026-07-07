@@ -24,13 +24,16 @@ const AboutForm = () => {
 
   const aboutSchema = z.object({
     visi: z.string().min(1, t('messages.required')),
+    visi_en: z.string().min(1, t('messages.required')),
     misi: z.string().min(1, t('messages.required')),
+    misi_en: z.string().min(1, t('messages.required')),
     deskripsi: z.string().min(1, t('messages.required')),
+    deskripsi_en: z.string().min(1, t('messages.required')),
   });
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(aboutSchema),
-    defaultValues: { visi: '', misi: '', deskripsi: '' }
+    defaultValues: { visi: '', visi_en: '', misi: '', misi_en: '', deskripsi: '', deskripsi_en: '' }
   });
 
   useEffect(() => {
@@ -48,9 +51,12 @@ const AboutForm = () => {
           }
         } else {
           reset({
-            visi: 'To be the most trusted and preferred professional service provider...',
-            misi: 'To deliver exceptional service quality through trained professionals...',
-            deskripsi: 'Saeklindo is a professional service provider dedicated to delivering excellence...'
+            visi: 'Menjadi penyedia layanan profesional terpercaya...',
+            visi_en: 'To be the most trusted and preferred professional service provider...',
+            misi: 'Memberikan layanan berkualitas lewat tenaga profesional...',
+            misi_en: 'To deliver exceptional service quality through trained professionals...',
+            deskripsi: 'Saeklindo adalah penyedia layanan profesional...',
+            deskripsi_en: 'Saeklindo is a professional service provider dedicated to delivering excellence...'
           });
         }
       } catch (error) {
@@ -126,9 +132,12 @@ const AboutForm = () => {
       let targetId = record?.id;
       if (!targetId) {
         const defaultData = {
-          visi: 'To be the most trusted and preferred professional service provider...',
-          misi: 'To deliver exceptional service quality through trained professionals...',
-          deskripsi: 'Saeklindo is a professional service provider dedicated to delivering excellence...'
+          visi: 'Menjadi penyedia layanan profesional terpercaya...',
+          visi_en: 'To be the most trusted and preferred professional service provider...',
+          misi: 'Memberikan layanan berkualitas lewat tenaga profesional...',
+          misi_en: 'To deliver exceptional service quality through trained professionals...',
+          deskripsi: 'Saeklindo adalah penyedia layanan profesional...',
+          deskripsi_en: 'Saeklindo is a professional service provider dedicated to delivering excellence...'
         };
         const newRecord = await pb.collection('content').create({
           page: 'about',
@@ -221,25 +230,58 @@ const AboutForm = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} className="bg-card p-6 rounded-xl shadow-sm border space-y-6">
         <h3 className="text-lg font-semibold mb-4">Teks Tentang Kami</h3>
-        <div>
-          <label className="block text-sm font-medium mb-2">{t('form.companyDesc')}</label>
-          <Textarea {...register('deskripsi')} rows={4} />
-          {errors.deskripsi && <p className="text-sm text-destructive mt-1">{errors.deskripsi.message}</p>}
+        
+        <div className="space-y-4">
+          <div className="p-4 bg-muted/30 rounded-lg border">
+            <h4 className="font-medium mb-3">{t('form.companyDesc')}</h4>
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label className="block text-xs font-medium text-muted-foreground mb-1">Bahasa Indonesia</label>
+                <Textarea {...register('deskripsi')} rows={3} />
+                {errors.deskripsi && <p className="text-sm text-destructive mt-1">{errors.deskripsi.message}</p>}
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-muted-foreground mb-1">English</label>
+                <Textarea {...register('deskripsi_en')} rows={3} />
+                {errors.deskripsi_en && <p className="text-sm text-destructive mt-1">{errors.deskripsi_en.message}</p>}
+              </div>
+            </div>
+          </div>
+
+          <div className="p-4 bg-muted/30 rounded-lg border">
+            <h4 className="font-medium mb-3">{t('form.visi')}</h4>
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label className="block text-xs font-medium text-muted-foreground mb-1">Bahasa Indonesia</label>
+                <Textarea {...register('visi')} rows={2} />
+                {errors.visi && <p className="text-sm text-destructive mt-1">{errors.visi.message}</p>}
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-muted-foreground mb-1">English</label>
+                <Textarea {...register('visi_en')} rows={2} />
+                {errors.visi_en && <p className="text-sm text-destructive mt-1">{errors.visi_en.message}</p>}
+              </div>
+            </div>
+          </div>
+
+          <div className="p-4 bg-muted/30 rounded-lg border">
+            <h4 className="font-medium mb-3">{t('form.misi')}</h4>
+            <div className="grid grid-cols-1 gap-4">
+              <div>
+                <label className="block text-xs font-medium text-muted-foreground mb-1">Bahasa Indonesia</label>
+                <Textarea {...register('misi')} rows={3} />
+                {errors.misi && <p className="text-sm text-destructive mt-1">{errors.misi.message}</p>}
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-muted-foreground mb-1">English</label>
+                <Textarea {...register('misi_en')} rows={3} />
+                {errors.misi_en && <p className="text-sm text-destructive mt-1">{errors.misi_en.message}</p>}
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-2">{t('form.visi')}</label>
-          <Textarea {...register('visi')} rows={3} />
-          {errors.visi && <p className="text-sm text-destructive mt-1">{errors.visi.message}</p>}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-2">{t('form.misi')}</label>
-          <Textarea {...register('misi')} rows={4} />
-          {errors.misi && <p className="text-sm text-destructive mt-1">{errors.misi.message}</p>}
-        </div>
-
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting} className="w-full">
           {isSubmitting ? t('buttons.saving') : t('buttons.saveAbout')}
         </Button>
       </form>

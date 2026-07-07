@@ -19,12 +19,14 @@ const HeroForm = () => {
 
   const heroSchema = z.object({
     tagline: z.string().min(1, t('messages.required')),
+    tagline_en: z.string().min(1, t('messages.required')),
     deskripsi: z.string().min(1, t('messages.required')),
+    deskripsi_en: z.string().min(1, t('messages.required')),
   });
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
     resolver: zodResolver(heroSchema),
-    defaultValues: { tagline: '', deskripsi: '' }
+    defaultValues: { tagline: '', tagline_en: '', deskripsi: '', deskripsi_en: '' }
   });
 
   const fetchOrCreateContent = async () => {
@@ -40,7 +42,9 @@ const HeroForm = () => {
       } else {
         const defaultData = {
           tagline: 'Care For Yours',
-          deskripsi: 'Professional service solutions for your home and business.'
+          tagline_en: 'Care For Yours',
+          deskripsi: 'Professional service solutions for your home and business.',
+          deskripsi_en: 'Professional service solutions for your home and business.'
         };
         const newRecord = await pb.collection('content').create({
           page: 'hero',
@@ -114,16 +118,30 @@ const HeroForm = () => {
       <div className="p-6">
         {activeTab === 'text' ? (
           <form onSubmit={handleSubmit(onTextSubmit)} className="space-y-6 max-w-2xl">
-            <div>
-              <label className="block text-sm font-medium mb-2">{t('form.tagline')}</label>
-              <Input {...register('tagline')} placeholder={t('placeholders.tagline')} />
-              {errors.tagline && <p className="text-sm text-destructive mt-1">{errors.tagline.message}</p>}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">{t('form.tagline')} (ID)</label>
+                <Input {...register('tagline')} placeholder={t('placeholders.tagline')} />
+                {errors.tagline && <p className="text-sm text-destructive mt-1">{errors.tagline.message}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">{t('form.tagline')} (EN)</label>
+                <Input {...register('tagline_en')} placeholder={t('placeholders.tagline')} />
+                {errors.tagline_en && <p className="text-sm text-destructive mt-1">{errors.tagline_en.message}</p>}
+              </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium mb-2">{t('form.deskripsi')}</label>
-              <Textarea {...register('deskripsi')} rows={4} placeholder={t('placeholders.description')} />
-              {errors.deskripsi && <p className="text-sm text-destructive mt-1">{errors.deskripsi.message}</p>}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">{t('form.deskripsi')} (ID)</label>
+                <Textarea {...register('deskripsi')} rows={4} placeholder={t('placeholders.description')} />
+                {errors.deskripsi && <p className="text-sm text-destructive mt-1">{errors.deskripsi.message}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">{t('form.deskripsi')} (EN)</label>
+                <Textarea {...register('deskripsi_en')} rows={4} placeholder={t('placeholders.description')} />
+                {errors.deskripsi_en && <p className="text-sm text-destructive mt-1">{errors.deskripsi_en.message}</p>}
+              </div>
             </div>
 
             <Button type="submit" disabled={isSubmitting}>

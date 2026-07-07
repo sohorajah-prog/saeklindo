@@ -18,8 +18,11 @@ const ServicesForm = () => {
 
   const [formData, setFormData] = useState({
     nama: '',
+    nama_en: '',
     deskripsi: '',
+    deskripsi_en: '',
     benefits: '',
+    benefits_en: '',
     file: null,
     preview: null
   });
@@ -94,8 +97,11 @@ const ServicesForm = () => {
     try {
       const data = new FormData();
       data.append('nama', formData.nama);
+      data.append('nama_en', formData.nama_en || formData.nama);
       data.append('deskripsi', formData.deskripsi);
+      data.append('deskripsi_en', formData.deskripsi_en || formData.deskripsi);
       data.append('benefits', formData.benefits);
+      data.append('benefits_en', formData.benefits_en || formData.benefits);
       if (formData.file) {
         data.append('image', formData.file);
       }
@@ -103,7 +109,10 @@ const ServicesForm = () => {
       await pb.collection('services').create(data, { $autoCancel: false });
       
       toast.success(t('messages.servicesUpdated'));
-      setFormData({ nama: '', deskripsi: '', benefits: '', file: null, preview: null });
+      setFormData({ 
+        nama: '', nama_en: '', deskripsi: '', deskripsi_en: '', 
+        benefits: '', benefits_en: '', file: null, preview: null 
+      });
       if (fileInputRef.current) fileInputRef.current.value = '';
       fetchItems();
     } catch (error) {
@@ -141,45 +150,82 @@ const ServicesForm = () => {
         <h2 className="text-xl font-semibold mb-6">{t('buttons.addService')}</h2>
         
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-6">
-              <div className="space-y-2">
-                <Label htmlFor="nama">{t('form.serviceName')} *</Label>
-                <Input
-                  id="nama"
-                  value={formData.nama}
-                  onChange={(e) => setFormData(prev => ({ ...prev, nama: e.target.value }))}
-                  placeholder="e.g. Cleaning Service"
-                  required
-                />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2 space-y-6">
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-muted/30 rounded-lg border">
+                <div className="space-y-2">
+                  <Label htmlFor="nama">{t('form.serviceName')} (ID) *</Label>
+                  <Input
+                    id="nama"
+                    value={formData.nama}
+                    onChange={(e) => setFormData(prev => ({ ...prev, nama: e.target.value }))}
+                    placeholder="Contoh: Layanan Kebersihan"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="nama_en">{t('form.serviceName')} (EN)</Label>
+                  <Input
+                    id="nama_en"
+                    value={formData.nama_en}
+                    onChange={(e) => setFormData(prev => ({ ...prev, nama_en: e.target.value }))}
+                    placeholder="e.g. Cleaning Service"
+                  />
+                </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="benefits">{t('form.benefits')} *</Label>
-                <Input
-                  id="benefits"
-                  value={formData.benefits}
-                  onChange={(e) => setFormData(prev => ({ ...prev, benefits: e.target.value }))}
-                  placeholder="e.g. Certified staff, Eco-friendly"
-                  required
-                />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-muted/30 rounded-lg border">
+                <div className="space-y-2">
+                  <Label htmlFor="benefits">{t('form.benefits')} (ID) *</Label>
+                  <Input
+                    id="benefits"
+                    value={formData.benefits}
+                    onChange={(e) => setFormData(prev => ({ ...prev, benefits: e.target.value }))}
+                    placeholder="Contoh: Staf terlatih, Produk ramah lingkungan"
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="benefits_en">{t('form.benefits')} (EN)</Label>
+                  <Input
+                    id="benefits_en"
+                    value={formData.benefits_en}
+                    onChange={(e) => setFormData(prev => ({ ...prev, benefits_en: e.target.value }))}
+                    placeholder="e.g. Certified staff, Eco-friendly"
+                  />
+                </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="deskripsi">{t('form.description')} *</Label>
-                <Textarea
-                  id="deskripsi"
-                  value={formData.deskripsi}
-                  onChange={(e) => setFormData(prev => ({ ...prev, deskripsi: e.target.value }))}
-                  placeholder={t('placeholders.description')}
-                  rows={4}
-                  required
-                />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-muted/30 rounded-lg border">
+                <div className="space-y-2">
+                  <Label htmlFor="deskripsi">{t('form.description')} (ID) *</Label>
+                  <Textarea
+                    id="deskripsi"
+                    value={formData.deskripsi}
+                    onChange={(e) => setFormData(prev => ({ ...prev, deskripsi: e.target.value }))}
+                    placeholder="Deskripsi layanan dalam Bahasa Indonesia"
+                    rows={4}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="deskripsi_en">{t('form.description')} (EN)</Label>
+                  <Textarea
+                    id="deskripsi_en"
+                    value={formData.deskripsi_en}
+                    onChange={(e) => setFormData(prev => ({ ...prev, deskripsi_en: e.target.value }))}
+                    placeholder="Service description in English"
+                    rows={4}
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 lg:col-span-1">
               <Label>{t('form.image')}</Label>
               <div 
-                className={`upload-dropzone h-[250px] rounded-xl p-4 flex flex-col items-center justify-center text-center cursor-pointer ${dragActive ? 'active' : ''}`}
+                className={`upload-dropzone h-[300px] rounded-xl p-4 flex flex-col items-center justify-center text-center cursor-pointer ${dragActive ? 'active' : ''}`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
                 onDragOver={handleDrag}

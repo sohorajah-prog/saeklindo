@@ -10,7 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useTranslation } from '@/hooks/useTranslation.js';
 
 const ServicesPage = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -22,16 +22,24 @@ const ServicesPage = () => {
           $autoCancel: false
         });
         if (records.length > 0) {
-          const formatted = records.map(s => ({
-            title: s.nama,
-            description: s.deskripsi,
-            image: s.image ? pb.files.getURL(s, s.image) : 'https://images.unsplash.com/photo-1699109076552-58db1cccae82',
-            benefits: s.benefits.split(',').map(b => b.trim()).filter(Boolean)
-          }));
+          const formatted = records.map(s => {
+            const title = language === 'en' && s.nama_en ? s.nama_en : s.nama;
+            const description = language === 'en' && s.deskripsi_en ? s.deskripsi_en : s.deskripsi;
+            const benefitsStr = language === 'en' && s.benefits_en ? s.benefits_en : s.benefits;
+            
+            return {
+              id: s.id,
+              title: title,
+              description: description,
+              image: s.image ? pb.files.getURL(s, s.image) : 'https://images.unsplash.com/photo-1699109076552-58db1cccae82',
+              benefits: benefitsStr.split(',').map(b => b.trim()).filter(Boolean)
+            };
+          });
           setServices(formatted);
         } else {
           setServices([
             {
+              id: 'default-1',
               title: t('services.items.cleaning'),
               image: 'https://images.unsplash.com/photo-1699109076552-58db1cccae82',
               description: 'Professional cleaning solutions for residential and commercial spaces.',
@@ -46,7 +54,7 @@ const ServicesPage = () => {
       }
     };
     fetchServices();
-  }, [t]);
+  }, [t, language]);
 
   return (
     <>

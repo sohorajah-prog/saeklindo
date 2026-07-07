@@ -10,11 +10,14 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useTranslation } from '@/hooks/useTranslation.js';
 
 const AboutPage = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [content, setContent] = useState({
     deskripsi: '',
+    deskripsi_en: '',
     visi: '',
+    visi_en: '',
     misi: '',
+    misi_en: '',
     imageUrl: 'https://images.unsplash.com/photo-1510130987633-2a82b350a9c2'
   });
   const [loading, setLoading] = useState(true);
@@ -42,6 +45,10 @@ const AboutPage = () => {
     };
     fetchAboutContent();
   }, []);
+
+  const currentDesc = language === 'en' && content.deskripsi_en ? content.deskripsi_en : content.deskripsi;
+  const currentVisi = language === 'en' && content.visi_en ? content.visi_en : content.visi;
+  const currentMisi = language === 'en' && content.misi_en ? content.misi_en : content.misi;
 
   return (
     <>
@@ -104,7 +111,7 @@ const AboutPage = () => {
                   </div>
                 ) : (
                   <div className="text-base leading-relaxed text-muted-foreground whitespace-pre-line">
-                    {content.deskripsi || t('about.description')}
+                    {currentDesc || t('about.description')}
                   </div>
                 )}
               </motion.div>
@@ -132,7 +139,7 @@ const AboutPage = () => {
                   <Skeleton className="h-20 w-full" />
                 ) : (
                   <p className="text-base leading-relaxed text-muted-foreground">
-                    {content.visi}
+                    {currentVisi}
                   </p>
                 )}
               </motion.div>
@@ -154,7 +161,7 @@ const AboutPage = () => {
                   <Skeleton className="h-20 w-full" />
                 ) : (
                   <p className="text-base leading-relaxed text-muted-foreground">
-                    {content.misi}
+                    {currentMisi}
                   </p>
                 )}
               </motion.div>

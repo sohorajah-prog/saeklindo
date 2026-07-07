@@ -13,10 +13,12 @@ import VideoPlayer from '@/components/VideoPlayer';
 import { useTranslation } from '@/hooks/useTranslation.js';
 
 const HomePage = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [content, setContent] = useState({
     tagline: '',
+    tagline_en: '',
     deskripsi: '',
+    deskripsi_en: '',
     services: [],
     videoUrl: null
   });
@@ -40,7 +42,9 @@ const HomePage = () => {
         if (heroRecords.length > 0) {
           const data = JSON.parse(heroRecords[0].value);
           newContent.tagline = data.tagline;
+          newContent.tagline_en = data.tagline_en;
           newContent.deskripsi = data.deskripsi;
+          newContent.deskripsi_en = data.deskripsi_en;
           if (heroRecords[0].video_file) {
             newContent.videoUrl = pb.files.getURL(heroRecords[0], heroRecords[0].video_file);
           }
@@ -58,7 +62,7 @@ const HomePage = () => {
   }, []);
 
   const getIconForService = (title) => {
-    const tStr = title.toLowerCase();
+    const tStr = title?.toLowerCase() || '';
     if (tStr.includes('clean')) return Sparkles;
     if (tStr.includes('secur')) return Shield;
     if (tStr.includes('driv')) return Car;
@@ -73,16 +77,19 @@ const HomePage = () => {
   ];
 
   const displayServices = content.services.length > 0 
-    ? content.services.slice(0, 4).map(s => ({ ...s, icon: getIconForService(s.nama) }))
+    ? content.services.slice(0, 4).map(s => ({ ...s, icon: getIconForService(s.nama_en || s.nama) }))
     : defaultServices;
 
   const fallbackHeroImage = "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070&auto=format&fit=crop";
 
+  const currentTagline = language === 'en' && content.tagline_en ? content.tagline_en : content.tagline;
+  const currentDesc = language === 'en' && content.deskripsi_en ? content.deskripsi_en : content.deskripsi;
+
   return (
     <>
       <Helmet>
-        <title>Saeklindo - {t('hero.tagline')} | Professional Service Solutions</title>
-        <meta name="description" content={t('hero.description')} />
+        <title>Saeklindo - {currentTagline || t('hero.tagline')} | Professional Service Solutions</title>
+        <meta name="description" content={currentDesc || t('hero.description')} />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
@@ -109,10 +116,10 @@ const HomePage = () => {
               ) : (
                 <>
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-balance drop-shadow-md" style={{letterSpacing: '-0.02em'}}>
-                    {content.tagline || t('hero.tagline')}
+                    {currentTagline || t('hero.tagline')}
                   </h1>
                   <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-balance drop-shadow font-medium text-white/90">
-                    {content.deskripsi || t('hero.description')}
+                    {currentDesc || t('hero.description')}
                   </p>
                 </>
               )}
@@ -170,9 +177,12 @@ const HomePage = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {displayServices.map((service, index) => {
                   const Icon = service.icon;
+                  const serviceName = language === 'en' && service.nama_en ? service.nama_en : service.nama;
+                  const serviceDesc = language === 'en' && service.deskripsi_en ? service.deskripsi_en : service.deskripsi;
+                  
                   return (
                     <motion.div
-                      key={service.nama}
+                      key={service.id || service.nama}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -188,10 +198,10 @@ const HomePage = () => {
                           </div>
                           <div className="flex-1">
                             <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-all duration-200">
-                              {service.nama}
+                              {serviceName}
                             </h3>
                             <p className="text-sm leading-relaxed mb-4 text-muted-foreground">
-                              {service.deskripsi}
+                              {serviceDesc}
                             </p>
                             <span className="text-sm font-medium text-primary inline-flex items-center gap-1">
                               {t('services.learnMore')}
