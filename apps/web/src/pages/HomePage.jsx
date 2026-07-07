@@ -20,6 +20,7 @@ const HomePage = () => {
     deskripsi: '',
     deskripsi_en: '',
     services: [],
+    clients: [],
     videoUrl: null
   });
   const [loading, setLoading] = useState(true);
@@ -27,13 +28,17 @@ const HomePage = () => {
   useEffect(() => {
     const fetchHomeContent = async () => {
       try {
-        const [heroRecords, serviceRecords] = await Promise.all([
+        const [heroRecords, serviceRecords, clientRecords] = await Promise.all([
           pb.collection('content').getFullList({
             filter: `page="hero" && field="data"`,
             $autoCancel: false
           }),
           pb.collection('services').getFullList({
             sort: 'created',
+            $autoCancel: false
+          }),
+          pb.collection('clients').getFullList({
+            sort: '-created',
             $autoCancel: false
           })
         ]);
@@ -51,6 +56,7 @@ const HomePage = () => {
         }
         
         newContent.services = serviceRecords;
+        newContent.clients = clientRecords;
         setContent(newContent);
       } catch (error) {
         console.error("Error fetching homepage content", error);
@@ -233,6 +239,40 @@ const HomePage = () => {
             </motion.div>
           </div>
         </section>
+
+        {content.clients && content.clients.length > 0 && (
+          <section className="py-12 bg-muted/30 overflow-hidden border-t border-b">
+            <div className="max-w-7xl mx-auto container-padding mb-8 text-center">
+              <h2 className="text-2xl md:text-3xl font-bold">{t('clients.title')}</h2>
+            </div>
+            
+            <div className="relative flex overflow-hidden w-full group">
+              <div className="animate-marquee flex whitespace-nowrap min-w-full items-center">
+                {/* We double the list to make infinite scroll seamless */}
+                {[...content.clients, ...content.clients, ...content.clients].map((client, index) => (
+                  <div 
+                    key={`${client.id}-${index}`}
+                    className="flex-shrink-0 w-[180px] sm:w-[200px] md:w-[220px] lg:w-[240px] px-4 flex items-center justify-center h-24"
+                  >
+                    <div className="bg-background border shadow-sm rounded-xl w-full h-full p-4 flex items-center justify-center hover:shadow-md transition-shadow">
+                      {client.logo ? (
+                        <img 
+                          src={pb.files.getURL(client, client.logo)} 
+                          alt={client.name}
+                          className="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                        />
+                      ) : (
+                        <span className="text-sm font-semibold text-center text-muted-foreground whitespace-normal">
+                          {client.name}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <Footer />
       </div>
