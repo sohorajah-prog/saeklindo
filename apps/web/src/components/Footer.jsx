@@ -122,7 +122,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-secondary-foreground/10 mt-12 pt-8 flex justify-center text-secondary-foreground/70">
+        <div className="mt-12 flex justify-center text-secondary-foreground/70">
           <p className="text-sm text-center">
             © {new Date().getFullYear()} Saeklindo. {t('footer.rights')}
           </p>
