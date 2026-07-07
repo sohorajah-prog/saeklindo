@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Instagram, Music2, MessageCircle } from 'lucide-react';
+import { Instagram, Music2, Facebook } from 'lucide-react';
 
 const SocialLinks = ({ className = "" }) => {
   const socialLinks = [
@@ -15,6 +15,12 @@ const SocialLinks = ({ className = "" }) => {
       icon: Music2,
       url: 'https://tiktok.com/@saeklindo.official',
       label: '@saeklindo.official'
+    },
+    {
+      name: 'Facebook',
+      icon: Facebook,
+      url: 'https://facebook.com/saeklindo.official',
+      label: 'saeklindo.official'
     }
   ];
 
