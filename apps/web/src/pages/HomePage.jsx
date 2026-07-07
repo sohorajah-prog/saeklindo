@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Shield, Car, Users } from 'lucide-react';
+import { ArrowRight, Sparkles, Shield, Car, Users, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
@@ -63,9 +63,10 @@ const HomePage = () => {
 
   const getIconForService = (title) => {
     const tStr = title?.toLowerCase() || '';
-    if (tStr.includes('clean')) return Sparkles;
-    if (tStr.includes('secur')) return Shield;
-    if (tStr.includes('driv')) return Car;
+    if (tStr.includes('clean') || tStr.includes('bersih')) return Sparkles;
+    if (tStr.includes('secur') || tStr.includes('aman')) return Shield;
+    if (tStr.includes('driv') || tStr.includes('sopir') || tStr.includes('supir')) return Car;
+    if (tStr.includes('taman') || tStr.includes('garden') || tStr.includes('landscap')) return Leaf;
     return Users;
   };
 

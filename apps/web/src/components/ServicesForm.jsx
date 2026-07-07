@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Upload, X, Trash2, Edit2, Loader2, Sparkles, Shield, Car, Users, LayoutGrid } from 'lucide-react';
+import { Upload, X, Trash2, Edit2, Loader2, Sparkles, Shield, Car, Users, LayoutGrid, Leaf } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -164,10 +164,11 @@ const ServicesForm = () => {
   };
 
   const getIconForService = (title) => {
-    const tStr = title.toLowerCase();
-    if (tStr.includes('clean')) return Sparkles;
-    if (tStr.includes('secur')) return Shield;
-    if (tStr.includes('driv')) return Car;
+    const tStr = title?.toLowerCase() || '';
+    if (tStr.includes('clean') || tStr.includes('bersih')) return Sparkles;
+    if (tStr.includes('secur') || tStr.includes('aman')) return Shield;
+    if (tStr.includes('driv') || tStr.includes('sopir') || tStr.includes('supir')) return Car;
+    if (tStr.includes('taman') || tStr.includes('garden') || tStr.includes('landscap')) return Leaf;
     return Users;
   };
 
