@@ -70,7 +70,7 @@ const Footer = () => {
               alt="Saeklindo" 
               className="h-12 w-auto mb-4"
             />
-            <h3 className="font-bold text-base mb-2 text-secondary-foreground whitespace-nowrap">PT. Saeklindo Karya Nusantara</h3>
+            <h3 className="font-garet font-bold text-base mb-2 text-secondary-foreground whitespace-nowrap">PT. Saeklindo Karya Nusantara</h3>
             <p className="text-sm leading-relaxed text-secondary-foreground/80 mb-6">
               {contactData.alamat}
             </p>

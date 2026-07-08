@@ -178,6 +178,10 @@
     text-wrap: balance;
   }
   
+  .font-garet {
+    font-family: 'Garet', sans-serif;
+  }
+  
   .animate-progress {
     transition: width 0.3s ease-in-out;
   }
