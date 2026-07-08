@@ -129,17 +129,19 @@ const AboutPage = () => {
                 transition={{ duration: 0.6 }}
                 className="bg-card text-card-foreground rounded-2xl p-8 shadow-lg"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 bg-primary/10 rounded-xl">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0 w-14 h-14 flex items-center justify-center">
                     <Eye className="w-8 h-8 text-primary" />
                   </div>
                   <h2 className="text-2xl font-bold">{t('about.vision')}</h2>
                 </div>
                 {loading ? (
-                  <Skeleton className="h-20 w-full" />
+                  <div className="pl-[72px]">
+                    <Skeleton className="h-20 w-full" />
+                  </div>
                 ) : (
                   <div 
-                    className="text-base leading-relaxed text-muted-foreground prose prose-sm prose-p:my-0 prose-ul:my-0 max-w-none dark:prose-invert"
+                    className="pl-[72px] text-base leading-relaxed text-muted-foreground prose prose-sm prose-p:my-0 prose-ul:my-0 max-w-none dark:prose-invert"
                     dangerouslySetInnerHTML={{ __html: currentVisi }}
                   />
                 )}
@@ -152,17 +154,19 @@ const AboutPage = () => {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="bg-card text-card-foreground rounded-2xl p-8 shadow-lg"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-3 bg-primary/10 rounded-xl">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 bg-primary/10 rounded-xl flex-shrink-0 w-14 h-14 flex items-center justify-center">
                     <Target className="w-8 h-8 text-primary" />
                   </div>
                   <h2 className="text-2xl font-bold">{t('about.mission')}</h2>
                 </div>
                 {loading ? (
-                  <Skeleton className="h-20 w-full" />
+                  <div className="pl-[72px]">
+                    <Skeleton className="h-20 w-full" />
+                  </div>
                 ) : (
                   <div 
-                    className="text-base leading-relaxed text-muted-foreground prose prose-sm prose-p:my-0 prose-ul:my-0 max-w-none dark:prose-invert"
+                    className="pl-[72px] text-base leading-relaxed text-muted-foreground prose prose-sm prose-p:my-0 prose-ul:my-0 max-w-none dark:prose-invert"
                     dangerouslySetInnerHTML={{ __html: currentMisi }}
                   />
                 )}
