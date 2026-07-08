@@ -7,7 +7,7 @@ import { useTranslation } from '@/hooks/useTranslation.js';
 import pb from '@/lib/pocketbaseClient';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [contactData, setContactData] = useState({
     whatsapp: '+62 896-7069-1999',
     phone: '021-38317003',
@@ -69,7 +69,7 @@ const Footer = () => {
               alt="Saeklindo" 
               className="h-12 w-auto mb-3"
             />
-            <h3 className="font-bold text-lg mb-2 text-secondary-foreground">PT. Saeklindo Karya Nusantara</h3>
+            <h3 className="font-bold text-base mb-2 text-secondary-foreground whitespace-nowrap">PT. Saeklindo Karya Nusantara</h3>
             <p className="text-sm leading-relaxed text-secondary-foreground/80">
               {t('footer.brandDesc')}
             </p>
@@ -96,16 +96,19 @@ const Footer = () => {
           <div>
             <span className="font-semibold text-base mb-4 block">{t('nav.services')}</span>
             <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service.id}>
-                  <Link 
-                    to="/services" 
-                    className="text-sm hover:text-primary transition-all duration-200 text-secondary-foreground/80"
-                  >
-                    {service.nama}
-                  </Link>
-                </li>
-              ))}
+              {services.map((service) => {
+                const serviceName = language === 'en' && service.nama_en ? service.nama_en : service.nama;
+                return (
+                  <li key={service.id}>
+                    <Link 
+                      to="/services" 
+                      className="text-sm hover:text-primary transition-all duration-200 text-secondary-foreground/80"
+                    >
+                      {serviceName}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
