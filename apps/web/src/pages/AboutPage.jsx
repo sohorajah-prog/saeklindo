@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Target, Eye, Users } from 'lucide-react';
+import { Target, Eye, Shield, Briefcase, Lightbulb, Handshake } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -49,6 +49,41 @@ const AboutPage = () => {
   const currentDesc = language === 'en' && content.deskripsi_en ? content.deskripsi_en : content.deskripsi;
   const currentVisi = language === 'en' && content.visi_en ? content.visi_en : content.visi;
   const currentMisi = language === 'en' && content.misi_en ? content.misi_en : content.misi;
+
+  const companyValues = [
+    {
+      id: 'integrity',
+      title: 'Integritas',
+      title_en: 'Integrity',
+      desc: 'Menjunjung tinggi kejujuran, tanggung jawab, dan konsistensi dalam setiap pekerjaan.',
+      desc_en: 'Upholding honesty, responsibility, and consistency in every task.',
+      icon: Shield
+    },
+    {
+      id: 'professionalism',
+      title: 'Profesionalisme',
+      title_en: 'Professionalism',
+      desc: 'Bekerja dengan standar operasional terbaik, disiplin, dan berorientasi pada hasil.',
+      desc_en: 'Working with the best operational standards, discipline, and a results-oriented approach.',
+      icon: Briefcase
+    },
+    {
+      id: 'innovation',
+      title: 'Inovasi',
+      title_en: 'Innovation',
+      desc: 'Mengintegrasikan teknologi dan metode kerja modern untuk meningkatkan kualitas layanan.',
+      desc_en: 'Integrating technology and modern work methods to improve service quality.',
+      icon: Lightbulb
+    },
+    {
+      id: 'collaboration',
+      title: 'Kolaborasi',
+      title_en: 'Collaboration',
+      desc: 'Membangun hubungan yang kuat antara perusahaan, pelanggan, dan tenaga kerja demi mencapai tujuan bersama.',
+      desc_en: 'Building strong relationships between the company, customers, and workforce to achieve shared goals.',
+      icon: Handshake
+    }
+  ];
 
   return (
     <>
@@ -171,6 +206,51 @@ const AboutPage = () => {
                   />
                 )}
               </motion.div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-spacing bg-background">
+          <div className="max-w-7xl mx-auto container-padding">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-16"
+            >
+              <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-2 block">
+                {language === 'en' ? 'COMPANY VALUES' : 'NILAI PERUSAHAAN'}
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold">
+                {language === 'en' ? 'The Values That Ground Us' : 'Nilai yang Menjadi Landasan Kami'}
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {companyValues.map((val, index) => {
+                const Icon = val.icon;
+                return (
+                  <motion.div
+                    key={val.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-card text-card-foreground border rounded-2xl p-8 shadow-sm hover:shadow-md transition-all text-center flex flex-col items-center group hover:border-primary/50"
+                  >
+                    <div className="p-4 bg-primary/10 rounded-2xl mb-6 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
+                      <Icon className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-4">
+                      {language === 'en' ? val.title_en : val.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed text-sm">
+                      {language === 'en' ? val.desc_en : val.desc}
+                    </p>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
