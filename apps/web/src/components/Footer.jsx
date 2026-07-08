@@ -61,18 +61,18 @@ const Footer = () => {
         style={{ backgroundImage: 'url("https://horizons-cdn.hostinger.com/0fbf01b6-28c7-4623-ba2e-62114b48b0f6/b439283246ab46f18acfac7d6df67b60.png")' }}
       ></div>
       <div className="relative z-10 max-w-7xl mx-auto container-padding section-spacing">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">
-          {/* Brand */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+          {/* Brand & Address */}
           <div className="lg:col-span-2 pr-0 lg:pr-8">
             <img 
               src="https://horizons-cdn.hostinger.com/0fbf01b6-28c7-4623-ba2e-62114b48b0f6/b439283246ab46f18acfac7d6df67b60.png" 
               alt="Saeklindo" 
-              className="h-12 w-auto mb-3"
+              className="h-12 w-auto mb-4"
             />
-            <h3 className="font-bold text-base mb-2 text-secondary-foreground whitespace-nowrap">PT. Saeklindo Karya Nusantara</h3>
-            <p className="text-sm leading-relaxed text-secondary-foreground/80">
-              {t('footer.brandDesc')}
+            <p className="text-sm leading-relaxed text-secondary-foreground/80 mb-6">
+              {contactData.alamat}
             </p>
+            <SocialLinks showLabel={false} className="flex-row items-center text-secondary-foreground/80" />
           </div>
 
           {/* Quick Links */}
@@ -147,12 +147,6 @@ const Footer = () => {
                 </span>
               </li>
             </ul>
-          </div>
-
-          {/* Social Media */}
-          <div>
-            <span className="font-semibold text-base mb-4 block">{t('footer.followUs')}</span>
-            <SocialLinks className="flex-col items-start" />
           </div>
         </div>
 

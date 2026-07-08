@@ -2,7 +2,7 @@
 import React from 'react';
 import { Instagram, Music2, Facebook } from 'lucide-react';
 
-const SocialLinks = ({ className = "" }) => {
+const SocialLinks = ({ className = "", showLabel = true }) => {
   const socialLinks = [
     {
       name: 'Instagram',
@@ -38,7 +38,7 @@ const SocialLinks = ({ className = "" }) => {
             aria-label={social.name}
           >
             <Icon className="w-5 h-5" />
-            <span className="hidden sm:inline">{social.label}</span>
+            {showLabel && <span className="hidden sm:inline">{social.label}</span>}
           </a>
         );
       })}
