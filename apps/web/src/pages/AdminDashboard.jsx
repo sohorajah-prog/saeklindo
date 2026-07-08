@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { LayoutDashboard, FileText, Settings, Users, LogOut, Phone, Image as ImageIcon, Building2 } from 'lucide-react';
+import { LayoutDashboard, FileText, Settings, Users, LogOut, Phone, Image as ImageIcon, Building2, Briefcase } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext.jsx';
@@ -11,6 +11,7 @@ import AboutForm from '@/components/AboutForm.jsx';
 import AdminContactForm from '@/components/AdminContactForm.jsx';
 import GalleryForm from '@/components/GalleryForm.jsx';
 import ClientsForm from '@/components/ClientsForm.jsx';
+import CareersForm from '@/components/CareersForm.jsx';
 import { useTranslation } from '@/hooks/useTranslation.js';
 
 const AdminDashboard = () => {
@@ -31,6 +32,7 @@ const AdminDashboard = () => {
     { id: 'gallery', label: t('admin.tabs.gallery'), icon: ImageIcon },
     { id: 'clients', label: t('admin.tabs.clients'), icon: Building2 },
     { id: 'contact', label: t('admin.tabs.contact'), icon: Phone },
+    { id: 'careers', label: t('admin.tabs.careers'), icon: Briefcase },
   ];
 
   return (
@@ -93,9 +95,10 @@ const AdminDashboard = () => {
               {activeTab === 'hero' && <HeroForm />}
               {activeTab === 'services' && <ServicesForm />}
               {activeTab === 'about' && <AboutForm />}
-              {activeTab === 'gallery' && <GalleryForm />}
-              {activeTab === 'clients' && <ClientsForm />}
-              {activeTab === 'contact' && <AdminContactForm />}
+              { activeTab === 'gallery' && <GalleryForm /> }
+              { activeTab === 'clients' && <ClientsForm /> }
+              { activeTab === 'contact' && <AdminContactForm /> }
+              { activeTab === 'careers' && <CareersForm /> }
             </div>
           </div>
         </main>

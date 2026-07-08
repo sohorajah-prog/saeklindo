@@ -8,6 +8,7 @@ import GalleryPage from './pages/GalleryPage.jsx';
 import ClientsPage from './pages/ClientsPage.jsx';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
+import CareersPage from './pages/CareersPage';
 import LoginPage from './pages/LoginPage';
 import AdminDashboard from './pages/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
@@ -29,6 +30,7 @@ function App() {
             <Route path="/clients" element={<ClientsPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/careers" element={<CareersPage />} />
             <Route path="/login" element={<LoginPage />} />
             
             {/* Protected Routes */}

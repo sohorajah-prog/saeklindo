@@ -5,8 +5,8 @@
     "about": "About",
     "services": "Services",
     "gallery": "Gallery",
-    "clients": "Clients",
     "contact": "Contact",
+    "careers": "Careers",
     "adminLogin": "Admin Login",
     "dashboard": "Dashboard",
     "logout": "Logout"
@@ -71,10 +71,20 @@
     "brandDesc": "Care For Yours - Professional service solutions for your home and business needs.",
     "quickLinks": "Quick Links",
     "contact": "Contact",
+    "careers": "Careers",
     "followUs": "Follow Us",
     "rights": "All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
+  },
+  "careers": {
+    "title": "Careers",
+    "description": "Join our growing professional team and reach your full potential with Saeklindo.",
+    "noCareers": "No job vacancies available",
+    "noCareersDesc": "There are currently no job openings. Please check back later.",
+    "applyNow": "Apply Now",
+    "manageTitle": "Manage Careers",
+    "addTitle": "Add New Career"
   },
   "login": {
     "title": "Sign In to Your Account",
@@ -97,7 +107,8 @@
       "about": "About Us",
       "gallery": "Gallery",
       "clients": "Clients",
-      "contact": "Contact"
+      "contact": "Contact",
+      "careers": "Careers"
     },
     "loading": "Loading form..."
   },
@@ -120,7 +131,13 @@
     "companyDesc": "Company Description",
     "textContent": "Text Content",
     "videoUpload": "Video Upload",
-    "serviceName": "Service Name"
+    "serviceName": "Service Name",
+    "requirements": "Requirements",
+    "type": "Type (e.g. Full-time)",
+    "location": "Location",
+    "applyUrl": "Application Email / Link",
+    "isActive": "Active Status",
+    "order": "Order"
   },
   "buttons": {
     "add": "Add",
@@ -139,7 +156,8 @@
     "saveHero": "Save Text Content",
     "addClient": "Add Client",
     "uploadImage": "Upload Image",
-    "sendMessage": "Send Message"
+    "sendMessage": "Send Message",
+    "addCareer": "Add Career"
   },
   "messages": {
     "success": "Operation successful",
@@ -157,7 +175,10 @@
     "imageDeleted": "Image deleted",
     "heroUpdated": "Hero text updated successfully",
     "aboutUpdated": "About section updated successfully",
-    "servicesUpdated": "Services updated successfully"
+    "servicesUpdated": "Services updated successfully",
+    "careerAdded": "Career added successfully",
+    "careerDeleted": "Career deleted successfully",
+    "careerUpdated": "Career updated successfully"
   },
   "placeholders": {
     "name": "Your full name",

@@ -5,8 +5,8 @@
     "about": "Tentang Kami",
     "services": "Layanan",
     "gallery": "Galeri",
-    "clients": "Klien",
     "contact": "Kontak",
+    "careers": "Karir",
     "adminLogin": "Login Admin",
     "dashboard": "Dasbor",
     "logout": "Keluar"
@@ -71,10 +71,20 @@
     "brandDesc": "Care For Yours - Solusi layanan profesional untuk kebutuhan rumah dan bisnis Anda.",
     "quickLinks": "Tautan Cepat",
     "contact": "Kontak",
+    "careers": "Karir",
     "followUs": "Ikuti Kami",
     "rights": "Hak cipta dilindungi undang-undang.",
     "privacy": "Kebijakan Privasi",
     "terms": "Syarat Ketentuan"
+  },
+  "careers": {
+    "title": "Karir",
+    "description": "Bergabunglah dengan tim profesional kami dan kembangkan potensi Anda bersama Saeklindo.",
+    "noCareers": "Belum ada lowongan pekerjaan",
+    "noCareersDesc": "Saat ini belum ada lowongan yang tersedia. Silakan periksa kembali nanti.",
+    "applyNow": "Lamar Sekarang",
+    "manageTitle": "Kelola Karir",
+    "addTitle": "Tambah Karir Baru"
   },
   "login": {
     "title": "Masuk ke Akun Anda",
@@ -97,7 +107,8 @@
       "about": "Tentang Kami",
       "gallery": "Galeri",
       "clients": "Klien",
-      "contact": "Kontak"
+      "contact": "Kontak",
+      "careers": "Karir"
     },
     "loading": "Memuat formulir..."
   },
@@ -120,7 +131,13 @@
     "companyDesc": "Deskripsi Perusahaan",
     "textContent": "Konten Teks",
     "videoUpload": "Unggah Video",
-    "serviceName": "Nama Layanan"
+    "serviceName": "Nama Layanan",
+    "requirements": "Persyaratan",
+    "type": "Tipe (mis. Penuh Waktu)",
+    "location": "Lokasi",
+    "applyUrl": "Email / Link Lamaran",
+    "isActive": "Status Aktif",
+    "order": "Urutan"
   },
   "buttons": {
     "add": "Tambah",
@@ -139,7 +156,8 @@
     "saveHero": "Simpan Konten Teks",
     "addClient": "Tambah Klien",
     "uploadImage": "Unggah Gambar",
-    "sendMessage": "Kirim Pesan"
+    "sendMessage": "Kirim Pesan",
+    "addCareer": "Tambah Karir"
   },
   "messages": {
     "success": "Operasi berhasil",
@@ -157,7 +175,9 @@
     "imageDeleted": "Gambar dihapus",
     "heroUpdated": "Teks utama berhasil diperbarui",
     "aboutUpdated": "Bagian tentang berhasil diperbarui",
-    "servicesUpdated": "Layanan berhasil diperbarui"
+    "servicesUpdated": "Layanan berhasil diperbarui",
+    "careerAdded": "Karir berhasil ditambahkan",
+    "careerDeleted": "Karir berhasil dihapus"
   },
   "placeholders": {
     "name": "Nama lengkap Anda",

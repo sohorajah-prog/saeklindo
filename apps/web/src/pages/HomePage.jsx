@@ -87,7 +87,7 @@ const HomePage = () => {
     ? content.services.slice(0, 4).map(s => ({ ...s, icon: getIconForService(s.nama_en || s.nama) }))
     : defaultServices;
 
-  const fallbackHeroImage = "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=2070&auto=format&fit=crop";
+  const fallbackHeroImage = "/hero-poster.jpg";
 
   const currentTagline = language === 'en' && content.tagline_en ? content.tagline_en : content.tagline;
   const currentDesc = language === 'en' && content.deskripsi_en ? content.deskripsi_en : content.deskripsi;
