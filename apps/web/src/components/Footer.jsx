@@ -61,9 +61,9 @@ const Footer = () => {
         style={{ backgroundImage: 'url("https://horizons-cdn.hostinger.com/0fbf01b6-28c7-4623-ba2e-62114b48b0f6/b439283246ab46f18acfac7d6df67b60.png")' }}
       ></div>
       <div className="relative z-10 max-w-7xl mx-auto container-padding section-spacing">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-2 pr-0 lg:pr-8">
             <img 
               src="https://horizons-cdn.hostinger.com/0fbf01b6-28c7-4623-ba2e-62114b48b0f6/b439283246ab46f18acfac7d6df67b60.png" 
               alt="Saeklindo" 
