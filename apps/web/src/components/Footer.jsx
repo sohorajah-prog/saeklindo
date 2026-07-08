@@ -11,6 +11,7 @@ const Footer = () => {
   const [contactData, setContactData] = useState({
     whatsapp: '+62 896-7069-1999',
     phone: '021-38317003',
+    email: 'info@saeklindo.com',
     alamat: 'Ruko Sentra Kranji, Jl. Bintara No.12f, RT.001/RW.012, Kranji, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17135, Indonesia'
   });
 
@@ -140,12 +141,17 @@ const Footer = () => {
                 </li>
               )}
 
-              <li className="flex items-start gap-2 text-sm">
-                <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span className="leading-relaxed">
-                  {contactData.alamat}
-                </span>
-              </li>
+              {contactData.email && (
+                <li className="flex items-start gap-2 text-sm">
+                  <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <a 
+                    href={`mailto:${contactData.email}`} 
+                    className="hover:text-primary transition-all duration-200 text-secondary-foreground"
+                  >
+                    {contactData.email}
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>
